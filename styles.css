@@ -1,0 +1,828 @@
+/* ==========================================================================
+   CRICWAY CLONE - COMPILED CSS STYLESHEET
+   100% Pixel-Perfect Recreation of crickway.online
+   ========================================================================== */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Lato', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  background-color: #e6ecf2;
+  overflow-x: hidden;
+  color: #333333;
+  font-size: 13px;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  height: 4px;
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #e2e8f0;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #94a3b8;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* --------------------------------------------------------------------------
+   ANIMATIONS FOR BLINKING LIVE & GREEN DOT
+   -------------------------------------------------------------------------- */
+@keyframes liveBlink {
+  0%, 100% {
+    opacity: 1;
+    filter: brightness(1.2);
+  }
+  50% {
+    opacity: 0.35;
+    filter: brightness(0.8);
+  }
+}
+
+@keyframes greenDotPulse {
+  0% {
+    transform: scale(0.9);
+    box-shadow: 0 0 0 0 rgba(0, 230, 118, 0.8);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.25);
+    box-shadow: 0 0 0 5px rgba(0, 230, 118, 0);
+    opacity: 0.4;
+  }
+  100% {
+    transform: scale(0.9);
+    box-shadow: 0 0 0 0 rgba(0, 230, 118, 0);
+    opacity: 1;
+  }
+}
+
+.green-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  background-color: #00ff66;
+  border-radius: 50%;
+  margin-right: 4px;
+  vertical-align: middle;
+  animation: greenDotPulse 1.2s infinite ease-in-out;
+}
+
+.live-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #00b050;
+  color: #ffffff;
+  font-size: 8.5px;
+  font-weight: 800;
+  padding: 2px 5px;
+  border-radius: 2px;
+  line-height: 1;
+  animation: liveBlink 1.2s ease-in-out infinite;
+}
+
+.live-badge .green-dot {
+  margin-right: 3px;
+}
+
+.live-badge::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: #ffffff;
+  margin-top: 1px;
+}
+
+/* --------------------------------------------------------------------------
+   HEADER
+   -------------------------------------------------------------------------- */
+.header {
+  height: 54px;
+  background-color: #0b1426;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.header__left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.header__hamburger {
+  display: none;
+  cursor: pointer;
+  width: 22px;
+  height: 14px;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+@media (max-width: 768px) {
+  .header__hamburger {
+    display: flex;
+  }
+}
+
+.header__hamburger span {
+  display: block;
+  height: 2px;
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 2px;
+}
+
+.header__brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+}
+
+.header__brand .brand-logo-svg {
+  height: 32px;
+}
+
+.header__actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-login {
+  height: 34px;
+  padding: 0 18px;
+  background-color: #009e38;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 12px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: all 0.2s ease-in-out;
+  text-decoration: none;
+}
+
+.btn-login:hover {
+  background-color: #008730;
+  transform: translateY(-1px);
+}
+
+.btn-signup {
+  height: 34px;
+  padding: 0 18px;
+  background-color: #e50914;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 12px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: all 0.2s ease-in-out;
+  text-decoration: none;
+}
+
+.btn-signup:hover {
+  background-color: #c40812;
+  transform: translateY(-1px);
+}
+
+/* --------------------------------------------------------------------------
+   LAYOUT & SIDEBAR
+   -------------------------------------------------------------------------- */
+.main-wrapper {
+  display: flex;
+  width: 100%;
+  min-height: calc(100vh - 54px);
+}
+
+.sidebar {
+  width: 180px;
+  background-color: #ffffff;
+  border-right: 1px solid #e2e8f0;
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    display: none;
+  }
+  .sidebar.mobile-open {
+    display: block;
+    position: fixed;
+    top: 54px;
+    left: 0;
+    width: 220px;
+    height: calc(100vh - 54px);
+    z-index: 99;
+    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.sidebar__nav {
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar__item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  height: 44px;
+  color: #1a365d;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 12px;
+  border-bottom: 1px solid #e2e8f0;
+  transition: all 0.2s ease-in-out;
+}
+
+.sidebar__item svg, .sidebar__item img {
+  width: 18px;
+  height: 18px;
+}
+
+.sidebar__item:hover {
+  background-color: #f8fafc;
+}
+
+.sidebar__item--active {
+  background-color: #1d81c4;
+  color: #ffffff;
+}
+
+.sidebar__item--active:hover {
+  background-color: #1d81c4;
+}
+
+.sidebar__item .arrow-icon {
+  margin-left: auto;
+  font-size: 9px;
+}
+
+/* --------------------------------------------------------------------------
+   CONTENT AREA
+   -------------------------------------------------------------------------- */
+.content-area {
+  flex-grow: 1;
+  padding: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  overflow-x: hidden;
+}
+
+/* --------------------------------------------------------------------------
+   TOP MATCHES TICKER / SLIDER
+   -------------------------------------------------------------------------- */
+.ticker-section {
+  width: 100%;
+  overflow-x: auto;
+  white-space: nowrap;
+  padding: 2px 0;
+  display: flex;
+  gap: 4px;
+}
+
+.ticker-section__container {
+  display: flex;
+  gap: 4px;
+  width: max-content;
+}
+
+.ticker-section__card {
+  background-color: #1d81c4;
+  color: #ffffff;
+  padding: 6px 10px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 220px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.ticker-section__card:hover {
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+}
+
+.ticker-section__card .card-icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.ticker-section__card .card-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.ticker-section__card .card-title {
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+  text-align: center;
+  margin-bottom: 2px;
+  animation: liveBlink 2s ease-in-out infinite;
+}
+
+.ticker-section__card .card-badge {
+  background-color: #0d5e3a;
+  font-size: 9.5px;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 4px;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* --------------------------------------------------------------------------
+   CATEGORY TABS
+   -------------------------------------------------------------------------- */
+.tabs-bar {
+  display: flex;
+  height: 38px;
+  border: 1px solid #1d81c4;
+  background-color: #ffffff;
+  overflow-x: auto;
+  white-space: nowrap;
+  border-radius: 2px;
+}
+
+.tabs-bar__tab {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 12px;
+  height: 100%;
+  background-color: #ffffff;
+  color: #0f172a;
+  font-weight: 800;
+  font-size: 12px;
+  text-transform: uppercase;
+  border-right: 1px solid #cbd5e1;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  flex-shrink: 0;
+}
+
+.tabs-bar__tab:hover {
+  background-color: #f1f5f9;
+}
+
+.tabs-bar__tab--active {
+  background-color: #162a45;
+  color: #ffffff;
+}
+
+.tabs-bar__tab--active:hover {
+  background-color: #162a45;
+}
+
+.tabs-bar__tab .tab-icon {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+}
+
+/* --------------------------------------------------------------------------
+   BANNERS
+   -------------------------------------------------------------------------- */
+.banners-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+}
+
+@media (max-width: 640px) {
+  .banners-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.banners-grid__banner {
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-weight: 900;
+  font-size: 15px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  border-radius: 2px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.banners-grid__banner--casino {
+  background-color: #8c0600;
+}
+
+.banners-grid__banner--casino:hover {
+  background-color: #a30700;
+}
+
+.banners-grid__banner--sports {
+  background-color: #f59e0b;
+}
+
+.banners-grid__banner--sports:hover {
+  background-color: #d97706;
+}
+
+/* --------------------------------------------------------------------------
+   SPORTS TABLES & ODDS
+   -------------------------------------------------------------------------- */
+.sports-table {
+  background-color: #ffffff;
+  border-radius: 2px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-bottom: 6px;
+}
+
+.sports-table__header {
+  background-color: #197bbd;
+  color: #ffffff;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+}
+
+.sports-table__header .header-title-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 800;
+  font-size: 13px;
+  text-transform: uppercase;
+  flex-grow: 1;
+}
+
+.sports-table__header .header-title-box .title-icon {
+  width: 18px;
+  height: 18px;
+}
+
+.sports-table__header .header-pills {
+  display: flex;
+  gap: 4px;
+  margin-left: 10px;
+}
+
+.sports-table__header .header-pills .pill {
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  display: inline-flex;
+  align-items: center;
+}
+
+.sports-table__header .header-pills .pill:hover,
+.sports-table__header .header-pills .pill.active {
+  background-color: rgba(255, 255, 255, 0.35);
+}
+
+.sports-table__header .header-pills .pill.active .green-dot {
+  animation: greenDotPulse 0.9s infinite ease-in-out;
+}
+
+.sports-table__header .odds-columns-header {
+  display: flex;
+  width: 420px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 900px) {
+  .sports-table__header .odds-columns-header {
+    width: 320px;
+  }
+}
+
+.sports-table__header .odds-columns-header .col-title {
+  flex: 1;
+  text-align: center;
+  font-weight: 800;
+  font-size: 12px;
+}
+
+.sports-table__row {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #e2e8f0;
+  min-height: 44px;
+  padding: 4px 10px;
+  transition: all 0.2s ease-in-out;
+}
+
+.sports-table__row:hover {
+  background-color: #f8fafc;
+}
+
+.sports-table__row .match-info {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-right: 10px;
+  min-width: 0;
+}
+
+.sports-table__row .match-info .date-time {
+  color: #d9381e;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.sports-table__row .match-info .match-name-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.sports-table__row .match-info .match-name {
+  font-size: 12px;
+  font-weight: 700;
+  color: #1e293b;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sports-table__row .match-info .badges-group {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  flex-shrink: 0;
+}
+
+.sports-table__row .match-info .badges-group .tv-icon {
+  width: 14px;
+  height: 14px;
+  color: #475569;
+}
+
+.sports-table__row .match-info .badges-group .tag-badge {
+  background-color: #202b3c;
+  color: #ffffff;
+  font-size: 8.5px;
+  font-weight: 800;
+  padding: 1px 4px;
+  border-radius: 2px;
+}
+
+.sports-table__row .odds-boxes-container {
+  display: flex;
+  width: 420px;
+  flex-shrink: 0;
+  gap: 2px;
+}
+
+@media (max-width: 900px) {
+  .sports-table__row .odds-boxes-container {
+    width: 320px;
+  }
+}
+
+.sports-table__row .odds-boxes-container .odds-group {
+  display: flex;
+  flex: 1;
+  gap: 2px;
+}
+
+.sports-table__row .odds-boxes-container .odds-box {
+  flex: 1;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 12px;
+  color: #0f172a;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  user-select: none;
+}
+
+.sports-table__row .odds-boxes-container .odds-box--back {
+  background-color: #72c2ff;
+}
+
+.sports-table__row .odds-boxes-container .odds-box--back:hover {
+  background-color: #52b3ff;
+}
+
+.sports-table__row .odds-boxes-container .odds-box--lay {
+  background-color: #ffb6c1;
+}
+
+.sports-table__row .odds-boxes-container .odds-box--lay:hover {
+  background-color: #ffa1b0;
+}
+
+.sports-table__row .odds-boxes-container .odds-box.disabled {
+  color: #475569;
+}
+
+/* --------------------------------------------------------------------------
+   LOGIN MODAL OVERLAY (SCREEN 3)
+   -------------------------------------------------------------------------- */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(2px);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 70px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.modal-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-overlay .modal-box {
+  background-color: #1a3352;
+  border: 1px solid #3b5982;
+  width: 90%;
+  max-width: 360px;
+  border-radius: 12px;
+  padding: 24px;
+  position: relative;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+  transform: translateY(-10px);
+  transition: transform 0.25s ease;
+}
+
+.modal-overlay.open .modal-box {
+  transform: translateY(0);
+}
+
+.modal-overlay .modal-box .modal-close-btn {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  color: #ffffff;
+  font-size: 20px;
+  cursor: pointer;
+  line-height: 1;
+  opacity: 0.8;
+  transition: all 0.2s ease-in-out;
+}
+
+.modal-overlay .modal-box .modal-close-btn:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.modal-overlay .modal-box .form-group {
+  margin-bottom: 14px;
+}
+
+.modal-overlay .modal-box .form-group label {
+  display: block;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+
+.modal-overlay .modal-box .form-group input {
+  width: 100%;
+  height: 42px;
+  background-color: #162a45;
+  border: 1px solid #3b5982;
+  border-radius: 6px;
+  color: #ffffff;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 600;
+  outline: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.modal-overlay .modal-box .form-group input::placeholder {
+  color: #8da4c4;
+}
+
+.modal-overlay .modal-box .form-group input:focus {
+  border-color: #60a5fa;
+  box-shadow: 0 0 0 2px rgba(96, 165, 250, 0.2);
+}
+
+.modal-overlay .modal-box .forgot-link {
+  display: block;
+  color: #94a3b8;
+  font-size: 12px;
+  text-decoration: none;
+  margin-top: 4px;
+  margin-bottom: 18px;
+  transition: all 0.2s ease-in-out;
+}
+
+.modal-overlay .modal-box .forgot-link:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+.modal-overlay .modal-box .modal-submit-btn {
+  width: 100%;
+  height: 44px;
+  background-color: #009e38;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 800;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  transition: all 0.2s ease-in-out;
+}
+
+.modal-overlay .modal-box .modal-submit-btn:hover {
+  background-color: #008730;
+}
+
+.modal-overlay .modal-box .modal-demo-btn {
+  width: 100%;
+  height: 44px;
+  background-color: #2c7db3;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 800;
+  border: 1px solid #4a93c7;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.modal-overlay .modal-box .modal-demo-btn:hover {
+  background-color: #246896;
+}

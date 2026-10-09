@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cricway - Your Prediction, Your Profit</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- =========================================================================
+       1. HEADER BAR
+       ========================================================================= -->
+  <header class="header">
+    <div class="header__left">
+      <!-- Hamburger Icon for Mobile -->
+      <div class="header__hamburger" id="hamburgerBtn" title="Toggle Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+      <!-- Cricway Brand Logo -->
+      <a href="#" class="header__brand">
+        <svg class="brand-logo-svg" viewBox="0 0 160 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 28C6.47715 28 2 23.5228 2 18C2 12.4772 6.47715 8 12 8C14.5 8 16.8 8.9 18.5 10.5L15.5 13.5C14.6 12.6 13.4 12 12 12C8.68629 12 6 14.6863 6 18C6 21.3137 8.68629 24 12 24C14.5 24 16.6 22.5 17.5 20.3H12V16.5H22V18.2C22 23.8 17.5 28 12 28Z" fill="#70CF3D"/>
+          <path d="M22 6L26 26L30 14L34 26L38 6H34.5L32 18.5L28 6.5H27.5L23.5 18.5L21 6H22Z" fill="#FFB632"/>
+          <text x="42" y="24" font-family="'Lato', sans-serif" font-weight="900" font-size="20" fill="#FFFFFF" letter-spacing="0.5">CRICWAY</text>
+          <text x="42" y="32" font-family="'Lato', sans-serif" font-weight="700" font-size="6.5" fill="#70CF3D">Your Prediction, Your Profit</text>
+        </svg>
+      </a>
+    </div>
+
+    <!-- Login & Signup Buttons -->
+    <div class="header__actions">
+      <a href="#" class="btn-login" id="headerLoginBtn">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M6 2H12C12.5523 2 13 2.44772 13 3V13C13 13.5523 12.5523 14 12 14H6M9 8H2M9 8L6.5 5.5M9 8L6.5 10.5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        LOGIN
+      </a>
+      <a href="#" class="btn-signup">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M8 8C9.65685 8 11 6.65685 11 5C11 3.34315 9.65685 2 8 2C6.34315 2 5 3.34315 5 5C5 6.65685 6.34315 8 8 8Z" fill="white"/>
+          <path d="M3 14C3 11.2386 5.23858 9 8 9C10.7614 9 13 11.2386 13 14" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+          <path d="M13 4V8M15 6H11" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+        SIGN UP
+      </a>
+    </div>
+  </header>
+
+  <!-- =========================================================================
+       2. MAIN BODY LAYOUT (SIDEBAR + CONTENT)
+       ========================================================================= -->
+  <div class="main-wrapper">
+    
+    <!-- LEFT SIDEBAR -->
+    <aside class="sidebar" id="sidebarNav">
+      <nav class="sidebar__nav">
+        <!-- HOME (Active) -->
+        <a href="#" class="sidebar__item sidebar__item--active">
+          <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 3L2 9.5V17H7V12H13V17H18V9.5L10 3Z" fill="currentColor"/>
+          </svg>
+          HOME
+        </a>
+
+        <!-- GAME RULES -->
+        <a href="#" class="sidebar__item">
+          <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 3H16V17H4V3ZM6 5V7H14V5H6ZM6 9V11H14V9H6ZM6 13V15H11V13H6Z" fill="#115283"/>
+          </svg>
+          GAME RULES
+        </a>
+
+        <!-- LANGUAGE -->
+        <a href="#" class="sidebar__item">
+          <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 2C5.58 2 2 5.58 2 10C2 14.42 5.58 18 10 18C14.42 18 18 14.42 18 10C18 5.58 14.42 2 10 2ZM10 16C6.69 16 4 13.31 4 10C4 6.69 6.69 4 10 4C13.31 4 16 6.69 16 10C16 13.31 13.31 16 10 16Z" fill="#55BEFF"/>
+          </svg>
+          LANGUAGE
+          <span class="arrow-icon">▶</span>
+        </a>
+      </nav>
+    </aside>
+
+    <!-- RIGHT CONTENT AREA -->
+    <main class="content-area">
+
+      <!-- =====================================================================
+           3. TOP TICKER / POPULAR MATCHES SLIDER
+           ===================================================================== -->
+      <section class="ticker-section hide-scrollbar">
+        <div class="ticker-section__container">
+          
+          <!-- Card 1 -->
+          <div class="ticker-section__card">
+            <svg class="card-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" fill="#FFFFFF"/><path d="M4 10C4 6.68629 6.68629 4 10 4M10 16C13.3137 16 16 13.3137 16 10" stroke="#70CF3D" stroke-width="2"/></svg>
+            <div class="card-details">
+              <div class="card-title"><span class="green-dot"></span>Lucknow Super Giants v R C Bengaluru</div>
+              <div class="card-badge">07/May/2026 | 19:30</div>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="ticker-section__card">
+            <svg class="card-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" fill="#94E061"/><path d="M3 10C7 10 10 7 10 3M10 17C10 13 13 10 17 10" stroke="#FFFFFF" stroke-width="1.5"/></svg>
+            <div class="card-details">
+              <div class="card-title"><span class="green-dot"></span>Noe Basiletti v A Tomljanovic</div>
+              <div class="card-badge">07/May/2026 | 12:08</div>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="ticker-section__card">
+            <svg class="card-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" fill="#94E061"/><path d="M3 10C7 10 10 7 10 3M10 17C10 13 13 10 17 10" stroke="#FFFFFF" stroke-width="1.5"/></svg>
+            <div class="card-details">
+              <div class="card-title"><span class="green-dot"></span>Fearnley v Mpetshi Perricard</div>
+              <div class="card-badge">07/May/2026 | 12:05</div>
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="ticker-section__card">
+            <svg class="card-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" fill="#94E061"/><path d="M3 10C7 10 10 7 10 3M10 17C10 13 13 10 17 10" stroke="#FFFFFF" stroke-width="1.5"/></svg>
+            <div class="card-details">
+              <div class="card-title"><span class="green-dot"></span>Fucsovics v Prizmic</div>
+              <div class="card-badge">07/May/2026 | 12:05</div>
+            </div>
+          </div>
+
+          <!-- Card 5 -->
+          <div class="ticker-section__card">
+            <svg class="card-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" fill="#94E061"/><path d="M3 10C7 10 10 7 10 3M10 17C10 13 13 10 17 10" stroke="#FFFFFF" stroke-width="1.5"/></svg>
+            <div class="card-details">
+              <div class="card-title"><span class="green-dot"></span>J Paolini v Leol Jeanjean</div>
+              <div class="card-badge">07/May/2026 | 12:08</div>
+            </div>
+          </div>
+
+          <!-- Card 6 -->
+          <div class="ticker-section__card">
+            <svg class="card-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" fill="#94E061"/><path d="M3 10C7 10 10 7 10 3M10 17C10 13 13 10 17 10" stroke="#FFFFFF" stroke-width="1.5"/></svg>
+            <div class="card-details">
+              <div class="card-title"><span class="green-dot"></span>Yu Starodubtseva v Sim Waltert</div>
+              <div class="card-badge">07/May/2026 | 15:30</div>
+            </div>
+          </div>
+
+          <!-- Card 7 -->
+          <div class="ticker-section__card">
+            <svg class="card-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" fill="#FFFFFF"/><path d="M10 2L13 7H7L10 2ZM10 18L7 13H13L10 18Z" fill="#333"/></svg>
+            <div class="card-details">
+              <div class="card-title"><span class="green-dot"></span>Aston Villa v Nottm Forest</div>
+              <div class="card-badge">08/May/2026 | 00:30</div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- =====================================================================
+           4. CATEGORY NAVIGATION TABS
+           ===================================================================== -->
+      <nav class="tabs-bar hide-scrollbar">
+        <!-- INPLAY (Active) -->
+        <div class="tabs-bar__tab tabs-bar__tab--active" data-category="inplay">
+          <svg class="tab-icon" viewBox="0 0 20 20" fill="none"><path d="M4 2H16V18H4V2ZM8 6V14L14 10L8 6Z" fill="#FF641A"/></svg>
+          INPLAY
+        </div>
+        <!-- CRICKET -->
+        <div class="tabs-bar__tab" data-category="cricket">
+          <svg class="tab-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7" stroke="#333" stroke-width="2"/></svg>
+          CRICKET
+        </div>
+        <!-- FOOTBALL -->
+        <div class="tabs-bar__tab" data-category="football">
+          <svg class="tab-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7" stroke="#333" stroke-width="1.5"/><path d="M10 5L13 8L11 12H9L7 8L10 5Z" fill="#333"/></svg>
+          FOOTBALL
+        </div>
+        <!-- TENNIS -->
+        <div class="tabs-bar__tab" data-category="tennis">
+          <svg class="tab-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7" fill="#94E061"/></svg>
+          TENNIS
+        </div>
+        <!-- COCK FIGHT -->
+        <div class="tabs-bar__tab" data-category="cockfight">
+          <span>🐓</span>
+          COCK FIGHT
+        </div>
+        <!-- FANTASY -->
+        <div class="tabs-bar__tab" data-category="fantasy">
+          <span>⭐</span>
+          FANTASY
+        </div>
+        <!-- CRICKET BATTLES -->
+        <div class="tabs-bar__tab" data-category="battle">
+          <span>🏏</span>
+          CRICKET BATTLE
+        </div>
+        <!-- CASINO -->
+        <div class="tabs-bar__tab" data-category="casino">
+          <span>🎰</span>
+          CASINO
+        </div>
+        <!-- SPORTS BOOK -->
+        <div class="tabs-bar__tab" data-category="sportsbook">
+          <span>📕</span>
+          SPORTS BOOK
+        </div>
+        <!-- GREYHOUND -->
+        <div class="tabs-bar__tab" data-category="greyhound">
+          <span>🐕</span>
+          GREYHOUND
+        </div>
+        <!-- KABADDI -->
+        <div class="tabs-bar__tab" data-category="kabaddi">
+          <span>🤼</span>
+          KABADDI
+        </div>
+        <!-- BASKETBALL -->
+        <div class="tabs-bar__tab" data-category="basketball">
+          <span>🏀</span>
+          BASKETBALL
+        </div>
+      </nav>
+
+      <!-- =====================================================================
+           5. PROMOTIONAL ACTION BANNERS
+           ===================================================================== -->
+      <section class="banners-grid">
+        <a href="#" class="banners-grid__banner banners-grid__banner--casino open-login-modal">OUR CASINO</a>
+        <a href="#" class="banners-grid__banner banners-grid__banner--sports open-login-modal">SPORTS BOOK</a>
+      </section>
+
+      <!-- =====================================================================
+           6. CRICKET SPORTS ODDS TABLE (SCREEN 1)
+           ===================================================================== -->
+      <section class="sports-table" id="cricketSection">
+        <!-- Header -->
+        <div class="sports-table__header">
+          <div class="header-title-box">
+            <svg class="title-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7" fill="#FFFFFF"/></svg>
+            CRICKET
+            <div class="header-pills">
+              <span class="pill active"><span class="green-dot"></span>+ LIVE</span>
+              <span class="pill">+ VIRTUAL</span>
+              <span class="pill">+ PREMIUM</span>
+            </div>
+          </div>
+          <div class="odds-columns-header">
+            <div class="col-title">1</div>
+            <div class="col-title">x</div>
+            <div class="col-title">2</div>
+          </div>
+        </div>
+
+        <!-- Row 1 -->
+        <div class="sports-table__row">
+          <div class="match-info">
+            <span class="date-time">07/05/2026 19:30 (IST)</span>
+            <div class="match-name-container">
+              <span class="match-name">Lucknow Super Giants v R C Bengaluru</span>
+              <div class="badges-group">
+                <span class="tv-icon">📺</span>
+                <span class="tag-badge">MO</span>
+                <span class="tag-badge">BM</span>
+                <span class="tag-badge">F</span>
+                <span class="tag-badge">T</span>
+                <span class="live-badge"><span class="green-dot"></span>LIVE</span>
+              </div>
+            </div>
+          </div>
+          <div class="odds-boxes-container">
+            <div class="odds-group">
+              <div class="odds-box odds-box--back">2.50</div>
+              <div class="odds-box odds-box--lay">2.52</div>
+            </div>
+            <div class="odds-group">
+              <div class="odds-box odds-box--back disabled">-</div>
+              <div class="odds-box odds-box--lay disabled">-</div>
+            </div>
+            <div class="odds-group">
+              <div class="odds-box odds-box--back">1.66</div>
+              <div class="odds-box odds-box--lay">1.67</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Row 2 -->
+        <div class="sports-table__row">
+          <div class="match-info">
+            <span class="date-time">25/03/2026 19:30 (IST)</span>
+            <div class="match-name-container">
+              <span class="match-name">Indian Premier League</span>
+              <div class="badges-group">
+                <span class="tv-icon">📺</span>
+                <span class="tag-badge">MO</span>
+                <span class="tag-badge">BM</span>
+                <span class="tag-badge">F</span>
+                <span class="live-badge"><span class="green-dot"></span>LIVE</span>
+              </div>
+            </div>
+          </div>
+          <div class="odds-boxes-container">
+            <div class="odds-group">
+              <div class="odds-box odds-box--back disabled">-</div>
+              <div class="odds-box odds-box--lay disabled">-</div>
+            </div>
+            <div class="odds-group">
+              <div class="odds-box odds-box--back disabled">-</div>
+              <div class="odds-box odds-box--lay disabled">-</div>
+            </div>
+            <div class="odds-group">
+              <div class="odds-box odds-box--back disabled">-</div>
+              <div class="odds-box odds-box--lay disabled">-</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Row 3 -->
+        <div class="sports-table__row">
+          <div class="match-info">
+            <span class="date-time">07/05/2026 08:45 (IST)</span>
+            <div class="match-name-container">
+              <span class="match-name">Nepal A vs. Scotland</span>
+              <div class="badges-group">
+                <span class="tv-icon">📺</span>
+                <span class="tag-badge">P</span>
+                <span class="live-badge"><span class="green-dot"></span>LIVE</span>
+              </div>
+            </div>
+          </div>
+          <div class="odds-boxes-container">
+            <div class="odds-group">
+              <div class="odds-box odds-box--back">1.07</div>
+              <div class="odds-box odds-box--lay disabled">-</div>
+            </div>
+            <div class="odds-group">
+              <div class="odds-box odds-box--back disabled">-</div>
+              <div class="odds-box odds-box--lay disabled">-</div>
+            </div>
+            <div class="odds-group">
+              <div class="odds-box odds-box--back">7.00</div>
+              <div class="odds-box odds-box--lay disabled">-</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Row 4 -->
+        <div class="sports-table__row">
+          <div class="match-info">
+            <span class="date-time">07/05/2026 15:30 (IST)</span>
+            <div class="match-name-container">
+              <span class="match-name">Paarl Royals SRL vs. Pretoria Capitals SRL</span>
+              <div class="badges-group">
+                <span class="tv-icon">📺</span>
+                <span class="tag-badge">P</span>
+                <span class="live-badge"><span class="green-dot"></span>LIVE</span>
+              </div>
+            </div>
+          </div>
+          <div class="odds-boxes-container">
+            <div class="odds-group">
+              <div class="odds-box odds-box--back">2.02</div>
+              <div class="odds-box odds-box--lay disabled">-</div>
+            </div>
+            <div class="odds-group">
+              <div class="odds-box odds-box--back disabled">-</div>
+              <div class="odds-box odds-box--lay disabled">-</div>
+            </div>
+            <div class="odds-group">
+              <div class="odds-box odds-box--back">1.78</div>
+              <div class="odds-box odds-box--lay disabled">-</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Row 5 -->
+        <div class="sports-table__row">
+          <div class="match-info">
+            <span class="date-time">07/05/2026 16:05 (IST)</span>
+            <div class="match-name-container">
+              <span class="match-name">🎮 NEW ZEALAND T10 v PAKISTAN T10</span>
+              <div class="badges-group">
+                <span class="tv-icon">📺</span>
+                <span class="tag-badge">BM</span>
+                <span class="live-badge"><span class="green-dot"></span>LIVE</span>
+              </div>
+            </div>
+          </div>
+          <div class="odds-boxes-container">
+            <div class="odds-group">
+              <div class="odds-box odds-box--back disabled">-</div>
+              <div class="odds-box odds-box--lay disabled">-</div>
+            </div>
+            <div class="odds-group">
+              <div class="odds-box odds-box--back disabled">-</div>
+              <div class="odds-box odds-box--lay disabled">-</div>
+            </div>
+            <div class="odds-group">
+              <div class="odds-box odds-box--back disabled">-</div>
+              <div class="odds-box odds-box--lay disabled">-</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Row 6 -->
+        <div class="sports-table__row">
+          <div class="match-info">
+            <span class="date-time">07/05/2026 16:10 (IST)</span>
+            <div class="match-name-container">
+              <span class="match-name">🎮 NEW ZEALAND T10 v SOUTH AFRICA T10</span>
+              <div class="badges-group">
+                <span class="tv-icon">📺</span>
+                <span class="tag-badge">F</span>
+                <span class="live-badge"><span class="green-dot"></span>LIVE</span>
+              </div>
+            </div>
+          </div>
+          <div class="odds-boxes-container">
+            <div class="odds-group">
+              <div class="odds-box odds-box--back disabled">-</div>
+              <div class="odds-box odds-box--lay disabled">-</div>
+            </div>
+            <div class="odds-group">
+              <div class="odds-box odds-box--back disabled">-</div>
+              <div class="odds-box odds-box--lay disabled">-</div>
+            </div>
+            <div class="odds-group">
+              <div class="odds-box odds-box--back disabled">-</div>
+              <div class="odds-box odds-box--lay disabled">-</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Row 7 -->
+        <div class="sports-table__row">
+          <div class="match-info">
+            <span class="date-time">07/05/2026 16:30 (IST)</span>
+            <div class="match-name-container">
+              <span class="match-name">🎮 BRISBANE HEAT SO v SYDNEY SIXERS SO</span>
+              <div class="badges-group">
+                <span class="tv-icon">📺</span>
+                <span class="tag-badge">BM</span>
+                <span class="live-badge"><span class="green-dot"></span>LIVE</span>
+              </div>
+            </div>
+          </div>
+          <div class="odds-boxes-container">
+            <div class="odds-group">
+              <div class="odds-box odds-box--back disabled">-</div>
+              <div class="odds-box odds-box--lay disabled">-</div>
+            </div>
+            <div class="odds-group">
+              <div class="odds-box odds-box--back disabled">-</div>
+              <div class="odds-box odds-box--lay disabled">-</div>
+            </div>
+            <div class="odds-group">
+              <div class="odds-box odds-box--back disabled">-</div>
+              <div class="odds-box odds-box--lay disabled">-</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================================
+           7. FOOTBALL SPORTS ODDS TABLE (SCREEN 2)
+           ===================================================================== -->
+      <section class="sports-table" id="footballSection">
+        <!-- Top race row -->
+        <div class="sports-table__row">
+          <div class="match-info">
+            <span class="date-time">25/05/2026 01:30 (IST)</span>
+            <div class="match-name-container">
+              <span class="match-name">CANADIAN GRAND PRIX - RACE</span>
+              <div class="badges-group">
+                <span class="tv-icon">📺</span>
+                <span class="tag-badge">BM</span>
+                <span class="live-badge"><span class="green-dot"></span>LIVE</span>
+              </div>
+            </div>
+          </div>
+          <div class="odds-boxes-container">
+            <div class="odds-group"><div class="odds-box odds-box--back disabled">-</div><div class="odds-box odds-box--lay disabled">-</div></div>
+            <div class="odds-group"><div class="odds-box odds-box--back disabled">-</div><div class="odds-box odds-box--lay disabled">-</div></div>
+            <div class="odds-group"><div class="odds-box odds-box--back disabled">-</div><div class="odds-box odds-box--lay disabled">-</div></div>
+          </div>
+        </div>
+
+        <!-- Header -->
+        <div class="sports-table__header">
+          <div class="header-title-box">
+            <svg class="title-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7" fill="#FFFFFF"/><path d="M10 5L13 8L11 12H9L7 8L10 5Z" fill="#197bbd"/></svg>
+            FOOTBALL
+            <div class="header-pills">
+              <span class="pill active"><span class="green-dot"></span>+ LIVE</span>
+              <span class="pill">+ VIRTUAL</span>
+              <span class="pill">+ PREMIUM</span>
+            </div>
+          </div>
+          <div class="odds-columns-header">
+            <div class="col-title">1</div>
+            <div class="col-title">x</div>
+            <div class="col-title">2</div>
+          </div>
+        </div>
+
+        <!-- Row 1 -->
+        <div class="sports-table__row">
+          <div class="match-info">
+            <span class="date-time">30/04/2026 12:05 (IST)</span>
+            <div class="match-name-container">
+              <span class="match-name">UEFA CHAMPIONS LEAGUE - WINNER 2025/26</span>
+              <div class="badges-group"><span class="tv-icon">📺</span><span class="tag-badge">BM</span><span class="live-badge"><span class="green-dot"></span>LIVE</span></div>
+            </div>
+          </div>
+          <div class="odds-boxes-container">
+            <div class="odds-group"><div class="odds-box odds-box--back disabled">-</div><div class="odds-box odds-box--lay disabled">-</div></div>
+            <div class="odds-group"><div class="odds-box odds-box--back disabled">-</div><div class="odds-box odds-box--lay disabled">-</div></div>
+            <div class="odds-group"><div class="odds-box odds-box--back disabled">-</div><div class="odds-box odds-box--lay disabled">-</div></div>
+          </div>
+        </div>
+
+        <!-- Row 2 -->
+        <div class="sports-table__row">
+          <div class="match-info">
+            <span class="date-time">30/04/2026 12:06 (IST)</span>
+            <div class="match-name-container">
+              <span class="match-name">UEFA EUROPA LEAGUE - WINNER 2025/26</span>
+              <div class="badges-group"><span class="tv-icon">📺</span><span class="tag-badge">BM</span><span class="live-badge"><span class="green-dot"></span>LIVE</span></div>
+            </div>
+          </div>
+          <div class="odds-boxes-container">
+            <div class="odds-group"><div class="odds-box odds-box--back disabled">-</div><div class="odds-box odds-box--lay disabled">-</div></div>
+            <div class="odds-group"><div class="odds-box odds-box--back disabled">-</div><div class="odds-box odds-box--lay disabled">-</div></div>
+            <div class="odds-group"><div class="odds-box odds-box--back disabled">-</div><div class="odds-box odds-box--lay disabled">-</div></div>
+          </div>
+        </div>
+
+        <!-- Row 3 -->
+        <div class="sports-table__row">
+          <div class="match-info">
+            <span class="date-time">30/04/2026 12:07 (IST)</span>
+            <div class="match-name-container">
+              <span class="match-name">UEFA CONFERENCE LEAGUE - WINNER 2025/26</span>
+              <div class="badges-group"><span class="tv-icon">📺</span><span class="tag-badge">BM</span><span class="live-badge"><span class="green-dot"></span>LIVE</span></div>
+            </div>
+          </div>
+          <div class="odds-boxes-container">
+            <div class="odds-group"><div class="odds-box odds-box--back disabled">-</div><div class="odds-box odds-box--lay disabled">-</div></div>
+            <div class="odds-group"><div class="odds-box odds-box--back disabled">-</div><div class="odds-box odds-box--lay disabled">-</div></div>
+            <div class="odds-group"><div class="odds-box odds-box--back disabled">-</div><div class="odds-box odds-box--lay disabled">-</div></div>
+          </div>
+        </div>
+
+        <!-- Row 4 -->
+        <div class="sports-table__row">
+          <div class="match-info">
+            <span class="date-time">07/05/2026 00:15 (IST)</span>
+            <div class="match-name-container">
+              <span class="match-name">AD Isidro Metapan v CD Luis Angel Firpo</span>
+              <div class="badges-group"><span class="tv-icon">📺</span><span class="tag-badge">MO</span><span class="tag-badge">G</span><span class="live-badge"><span class="green-dot"></span>LIVE</span></div>
+            </div>
+          </div>
+          <div class="odds-boxes-container">
+            <div class="odds-group"><div class="odds-box odds-box--back">18.00</div><div class="odds-box odds-box--lay">610.00</div></div>
+            <div class="odds-group"><div class="odds-box odds-box--back">5.00</div><div class="odds-box odds-box--lay">90.00</div></div>
+            <div class="odds-group"><div class="odds-box odds-box--back">1.02</div><div class="odds-box odds-box--lay">200.00</div></div>
+          </div>
+        </div>
+
+        <!-- Row 5 -->
+        <div class="sports-table__row">
+          <div class="match-info">
+            <span class="date-time">07/05/2026 15:00 (IST)</span>
+            <div class="match-name-container">
+              <span class="match-name">Yeka vs. Dessie Ketema</span>
+              <div class="badges-group"><span class="tv-icon">📺</span><span class="tag-badge">P</span><span class="live-badge"><span class="green-dot"></span>LIVE</span></div>
+            </div>
+          </div>
+          <div class="odds-boxes-container">
+            <div class="odds-group"><div class="odds-box odds-box--back">9.90</div><div class="odds-box odds-box--lay disabled">-</div></div>
+            <div class="odds-group"><div class="odds-box odds-box--back">1.10</div><div class="odds-box odds-box--lay disabled">-</div></div>
+            <div class="odds-group"><div class="odds-box odds-box--back">1.10</div><div class="odds-box odds-box--lay disabled">-</div></div>
+          </div>
+        </div>
+
+        <!-- Row 6 -->
+        <div class="sports-table__row">
+          <div class="match-info">
+            <span class="date-time">07/05/2026 15:30 (IST)</span>
+            <div class="match-name-container">
+              <span class="match-name">Hunters FC vs. Khangarid</span>
+              <div class="badges-group"><span class="tv-icon">📺</span><span class="tag-badge">P</span><span class="live-badge"><span class="green-dot"></span>LIVE</span></div>
+            </div>
+          </div>
+          <div class="odds-boxes-container">
+            <div class="odds-group"><div class="odds-box odds-box--back">5.20</div><div class="odds-box odds-box--lay disabled">-</div></div>
+            <div class="odds-group"><div class="odds-box odds-box--back">1.67</div><div class="odds-box odds-box--lay disabled">-</div></div>
+            <div class="odds-group"><div class="odds-box odds-box--back">1.67</div><div class="odds-box odds-box--lay disabled">-</div></div>
+          </div>
+        </div>
+
+        <!-- Row 7 -->
+        <div class="sports-table__row">
+          <div class="match-info">
+            <span class="date-time">07/05/2026 16:30 (IST)</span>
+            <div class="match-name-container">
+              <span class="match-name">Preah Khan Reach Svay Rieng FC vs. Boeung Ket Angkor FC</span>
+              <div class="badges-group"><span class="tv-icon">📺</span><span class="tag-badge">P</span><span class="live-badge"><span class="green-dot"></span>LIVE</span></div>
+            </div>
+          </div>
+          <div class="odds-boxes-container">
+            <div class="odds-group"><div class="odds-box odds-box--back">1.52</div><div class="odds-box odds-box--lay disabled">-</div></div>
+            <div class="odds-group"><div class="odds-box odds-box--back">5.20</div><div class="odds-box odds-box--lay disabled">-</div></div>
+            <div class="odds-group"><div class="odds-box odds-box--back">5.20</div><div class="odds-box odds-box--lay disabled">-</div></div>
+          </div>
+        </div>
+
+        <!-- Row 8 -->
+        <div class="sports-table__row">
+          <div class="match-info">
+            <span class="date-time">07/05/2026 16:30 (IST)</span>
+            <div class="match-name-container">
+              <span class="match-name">FC Kairat Almaty Reserve vs. FC Yelimay Reserve</span>
+              <div class="badges-group"><span class="tv-icon">📺</span><span class="tag-badge">P</span><span class="live-badge"><span class="green-dot"></span>LIVE</span></div>
+            </div>
+          </div>
+          <div class="odds-boxes-container">
+            <div class="odds-group"><div class="odds-box odds-box--back">1.16</div><div class="odds-box odds-box--lay disabled">-</div></div>
+            <div class="odds-group"><div class="odds-box odds-box--back">12.57</div><div class="odds-box odds-box--lay disabled">-</div></div>
+            <div class="odds-group"><div class="odds-box odds-box--back">12.57</div><div class="odds-box odds-box--lay disabled">-</div></div>
+          </div>
+        </div>
+
+        <!-- Row 9 -->
+        <div class="sports-table__row">
+          <div class="match-info">
+            <span class="date-time">08/05/2026 00:30 (IST)</span>
+            <div class="match-name-container">
+              <span class="match-name">Freiburg v Braga</span>
+              <div class="badges-group"><span class="tv-icon">📺</span><span class="tag-badge">MO</span><span class="tag-badge">BM</span><span class="live-badge"><span class="green-dot"></span>LIVE</span></div>
+            </div>
+          </div>
+          <div class="odds-boxes-container">
+            <div class="odds-group"><div class="odds-box odds-box--back">1.78</div><div class="odds-box odds-box--lay">1.79</div></div>
+            <div class="odds-group"><div class="odds-box odds-box--back">3.90</div><div class="odds-box odds-box--lay">3.95</div></div>
+            <div class="odds-group"><div class="odds-box odds-box--back">5.40</div><div class="odds-box odds-box--lay">5.50</div></div>
+          </div>
+        </div>
+
+        <!-- Row 10 -->
+        <div class="sports-table__row">
+          <div class="match-info">
+            <span class="date-time">08/05/2026 00:30 (IST)</span>
+            <div class="match-name-container">
+              <span class="match-name">Aston Villa v Nottm Forest</span>
+              <div class="badges-group"><span class="tv-icon">📺</span><span class="tag-badge">MO</span><span class="tag-badge">BM</span><span class="live-badge"><span class="green-dot"></span>LIVE</span></div>
+            </div>
+          </div>
+          <div class="odds-boxes-container">
+            <div class="odds-group"><div class="odds-box odds-box--back">1.79</div><div class="odds-box odds-box--lay">1.80</div></div>
+            <div class="odds-group"><div class="odds-box odds-box--back">4.00</div><div class="odds-box odds-box--lay">4.10</div></div>
+            <div class="odds-group"><div class="odds-box odds-box--back">5.00</div><div class="odds-box odds-box--lay">5.20</div></div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- =========================================================================
+       8. LOGIN MODAL DIALOG (SCREEN 3)
+       ========================================================================= -->
+  <div class="modal-overlay" id="loginModal">
+    <div class="modal-box">
+      <!-- Close Button -->
+      <span class="modal-close-btn" id="modalCloseBtn">✕</span>
+
+      <!-- Form -->
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="usernameInput">USERNAME</label>
+          <input type="text" id="usernameInput" placeholder="Username" required autocomplete="username">
+        </div>
+
+        <div class="form-group">
+          <label for="passwordInput">PASSWORD</label>
+          <input type="password" id="passwordInput" placeholder="Password" required autocomplete="current-password">
+        </div>
+
+        <a href="#" class="forgot-link">Forgot password</a>
+
+        <button type="submit" class="modal-submit-btn">LOGIN</button>
+        <button type="button" class="modal-demo-btn">LOGIN WITH DEMO ID</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- JavaScript Script -->
+  <script src="script.js"></script>
+</body>
+</html>
