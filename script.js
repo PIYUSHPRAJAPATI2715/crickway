@@ -1,6 +1,6 @@
 // ==========================================================================
 // CRICWAY CLONE - INTERACTIVE JAVASCRIPT
-// Handles Login Modal, Category Tabs, Filter Pills & Ticker Slider
+// Mobile Responsive Drawer, Login Modal, Tabs & Touch Slider
 // ==========================================================================
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function openModal() {
     if (modalOverlay) {
       modalOverlay.classList.add('open');
-      document.body.style.overflow = 'hidden'; // Prevent background scrolling
+      document.body.style.overflow = 'hidden';
     }
   }
 
@@ -27,7 +27,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Attach click listeners to LOGIN buttons
   loginBtns.forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
@@ -35,28 +34,20 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Close modal on 'X' click
-  if (closeBtn) {
-    closeBtn.addEventListener('click', closeModal);
-  }
+  if (closeBtn) closeBtn.addEventListener('click', closeModal);
 
-  // Close modal on backdrop overlay click
   if (modalOverlay) {
     modalOverlay.addEventListener('click', (e) => {
-      if (e.target === modalOverlay) {
-        closeModal();
-      }
+      if (e.target === modalOverlay) closeModal();
     });
   }
 
-  // Close modal on ESC key
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && modalOverlay && modalOverlay.classList.contains('open')) {
       closeModal();
     }
   });
 
-  // Form submit dummy handler
   if (loginForm) {
     loginForm.addEventListener('submit', (e) => {
       e.preventDefault();
@@ -78,7 +69,51 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ------------------------------------------------------------------------
-  // 2. CATEGORY TABS INTERACTIVITY
+  // 2. MOBILE SIDEBAR DRAWER TOGGLE
+  // ------------------------------------------------------------------------
+  const hamburger = document.getElementById('hamburgerBtn');
+  const sidebar = document.getElementById('sidebarNav');
+  const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+  function toggleMobileSidebar() {
+    if (sidebar && sidebarOverlay) {
+      const isOpen = sidebar.classList.contains('mobile-open');
+      if (isOpen) {
+        sidebar.classList.remove('mobile-open');
+        sidebarOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+      } else {
+        sidebar.classList.add('mobile-open');
+        sidebarOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+  }
+
+  function closeMobileSidebar() {
+    if (sidebar && sidebarOverlay) {
+      sidebar.classList.remove('mobile-open');
+      sidebarOverlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  }
+
+  if (hamburger) {
+    hamburger.addEventListener('click', toggleMobileSidebar);
+  }
+
+  if (sidebarOverlay) {
+    sidebarOverlay.addEventListener('click', closeMobileSidebar);
+  }
+
+  // Close sidebar on clicking any sidebar link
+  const sidebarLinks = document.querySelectorAll('.sidebar__item');
+  sidebarLinks.forEach(link => {
+    link.addEventListener('click', closeMobileSidebar);
+  });
+
+  // ------------------------------------------------------------------------
+  // 3. CATEGORY TABS INTERACTIVITY
   // ------------------------------------------------------------------------
   const categoryTabs = document.querySelectorAll('.tabs-bar__tab');
   const cricketSection = document.getElementById('cricketSection');
@@ -86,14 +121,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   categoryTabs.forEach(tab => {
     tab.addEventListener('click', () => {
-      // Remove active class from all tabs
       categoryTabs.forEach(t => t.classList.remove('tabs-bar__tab--active'));
-      // Add active class to clicked tab
       tab.classList.add('tabs-bar__tab--active');
 
       const categoryName = tab.dataset.category;
 
-      // Filter sections based on category selection
       if (categoryName === 'cricket') {
         if (cricketSection) cricketSection.style.display = 'block';
         if (footballSection) footballSection.style.display = 'none';
@@ -108,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ------------------------------------------------------------------------
-  // 3. FILTER PILLS TOGGLE (+ LIVE, + VIRTUAL, + PREMIUM)
+  // 4. FILTER PILLS TOGGLE (+ LIVE, + VIRTUAL, + PREMIUM)
   // ------------------------------------------------------------------------
   const filterPills = document.querySelectorAll('.header-pills .pill');
   filterPills.forEach(pill => {
@@ -118,19 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ------------------------------------------------------------------------
-  // 4. MOBILE HAMBURGER MENU TOGGLE
-  // ------------------------------------------------------------------------
-  const hamburger = document.getElementById('hamburgerBtn');
-  const sidebar = document.getElementById('sidebarNav');
-
-  if (hamburger && sidebar) {
-    hamburger.addEventListener('click', () => {
-      sidebar.classList.toggle('mobile-open');
-    });
-  }
-
-  // ------------------------------------------------------------------------
-  // 5. TOP TICKER HORIZONTAL MOUSE DRAG SCROLL
+  // 5. TOUCH & MOUSE DRAG SCROLL FOR TOP TICKER
   // ------------------------------------------------------------------------
   const tickerContainer = document.querySelector('.ticker-section');
   if (tickerContainer) {
@@ -140,43 +160,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     tickerContainer.addEventListener('mousedown', (e) => {
       isDown = true;
-      tickerContainer.classList.add('active');
       startX = e.pageX - tickerContainer.offsetLeft;
       scrollLeft = tickerContainer.scrollLeft;
     });
 
-    tickerContainer.addEventListener('mouseleave', () => {
-      isDown = false;
-      tickerContainer.classList.remove('active');
-    });
-
-    tickerContainer.addEventListener('mouseup', () => {
-      isDown = false;
-      tickerContainer.classList.remove('active');
-    });
+    tickerContainer.addEventListener('mouseleave', () => { isDown = false; });
+    tickerContainer.addEventListener('mouseup', () => { isDown = false; });
 
     tickerContainer.addEventListener('mousemove', (e) => {
       if (!isDown) return;
       e.preventDefault();
       const x = e.pageX - tickerContainer.offsetLeft;
-      const walk = (x - startX) * 2; // scroll speed factor
+      const walk = (x - startX) * 2;
       tickerContainer.scrollLeft = scrollLeft - walk;
     });
   }
-
-  // ------------------------------------------------------------------------
-  // 6. ODDS BOX CLICK HIGHLIGHT FEEDBACK
-  // ------------------------------------------------------------------------
-  const oddsBoxes = document.querySelectorAll('.odds-box:not(.disabled)');
-  oddsBoxes.forEach(box => {
-    box.addEventListener('click', () => {
-      const val = box.textContent.trim();
-      if (val && val !== '-') {
-        box.style.transform = 'scale(0.95)';
-        setTimeout(() => {
-          box.style.transform = 'scale(1)';
-        }, 150);
-      }
-    });
-  });
 });

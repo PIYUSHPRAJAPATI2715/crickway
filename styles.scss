@@ -1,6 +1,6 @@
 /* ==========================================================================
-   CRICWAY CLONE - SCSS STYLESHEET
-   100% Pixel-Perfect Recreation of crickway.online
+   CRICWAY CLONE - MOBILE RESPONSIVE SCSS STYLESHEET
+   100% Pixel-Perfect Desktop & Mobile View
    ========================================================================== */
 
 // --------------------------------------------------------------------------
@@ -63,7 +63,7 @@ $color-badge-live-green: #00b050;
 $color-date-red: #d9381e;
 
 // Modal Colors
-$color-modal-overlay: rgba(15, 23, 42, 0.75);
+$color-modal-overlay: rgba(15, 23, 42, 0.8);
 $color-modal-bg: #1a3352;
 $color-modal-border: #3b5982;
 $color-modal-input-bg: #162a45;
@@ -72,58 +72,21 @@ $color-demo-btn-bg: #2c7db3;
 $color-demo-btn-hover: #246896;
 
 // --------------------------------------------------------------------------
-// 2. ANIMATIONS (BLINKING LIVE & PULSING GREEN DOT)
+// 2. ANIMATIONS
 // --------------------------------------------------------------------------
 @keyframes liveBlink {
-  0%, 100% {
-    opacity: 1;
-    filter: brightness(1.2);
-  }
-  50% {
-    opacity: 0.35;
-    filter: brightness(0.8);
-  }
+  0%, 100% { opacity: 1; filter: brightness(1.2); }
+  50% { opacity: 0.35; filter: brightness(0.8); }
 }
 
 @keyframes greenDotPulse {
-  0% {
-    transform: scale(0.9);
-    box-shadow: 0 0 0 0 rgba(0, 230, 118, 0.8);
-    opacity: 1;
-  }
-  50% {
-    transform: scale(1.25);
-    box-shadow: 0 0 0 5px rgba(0, 230, 118, 0);
-    opacity: 0.4;
-  }
-  100% {
-    transform: scale(0.9);
-    box-shadow: 0 0 0 0 rgba(0, 230, 118, 0);
-    opacity: 1;
-  }
+  0% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(0, 230, 118, 0.8); opacity: 1; }
+  50% { transform: scale(1.25); box-shadow: 0 0 0 5px rgba(0, 230, 118, 0); opacity: 0.4; }
+  100% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(0, 230, 118, 0); opacity: 1; }
 }
 
 // --------------------------------------------------------------------------
-// 3. MIXINS
-// --------------------------------------------------------------------------
-@mixin flex-center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-@mixin flex-between {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-@mixin transition-standard {
-  transition: all 0.2s ease-in-out;
-}
-
-// --------------------------------------------------------------------------
-// 4. BASE & RESET STYLES
+// 3. BASE & RESET STYLES
 // --------------------------------------------------------------------------
 * {
   box-sizing: border-box;
@@ -142,10 +105,10 @@ html, body {
   font-size: 13px;
 }
 
-/* Custom Scrollbars */
+/* Custom Scrollbar Handling */
 ::-webkit-scrollbar {
-  height: 4px;
-  width: 5px;
+  height: 3px;
+  width: 4px;
 }
 ::-webkit-scrollbar-track {
   background: #e2e8f0;
@@ -153,9 +116,6 @@ html, body {
 ::-webkit-scrollbar-thumb {
   background: #94a3b8;
   border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #64748b;
 }
 
 .hide-scrollbar {
@@ -166,16 +126,14 @@ html, body {
   }
 }
 
-// --------------------------------------------------------------------------
-// 5. GREEN BLINKING LIVE DOT & BADGE
-// --------------------------------------------------------------------------
+// Blinking Elements
 .green-dot {
   display: inline-block;
-  width: 7px;
-  height: 7px;
+  width: 6px;
+  height: 6px;
   background-color: #00ff66;
   border-radius: 50%;
-  margin-right: 4px;
+  margin-right: 3px;
   vertical-align: middle;
   animation: greenDotPulse 1.2s infinite ease-in-out;
 }
@@ -186,48 +144,51 @@ html, body {
   justify-content: center;
   background-color: $color-badge-live-green;
   color: $color-white;
-  font-size: 8.5px;
+  font-size: 8px;
   font-weight: 800;
-  padding: 2px 5px;
+  padding: 1px 4px;
   border-radius: 2px;
   line-height: 1;
   animation: liveBlink 1.2s ease-in-out infinite;
-
-  .green-dot {
-    margin-right: 3px;
-  }
 
   &::after {
     content: '';
     display: block;
     width: 100%;
-    height: 2px;
+    height: 1.5px;
     background-color: #ffffff;
     margin-top: 1px;
   }
 }
 
 // --------------------------------------------------------------------------
-// 6. HEADER SECTION
+// 4. HEADER SECTION (MOBILE OPTIMIZED)
 // --------------------------------------------------------------------------
 .header {
-  height: 54px;
+  height: 50px;
   background-color: $color-header-bg;
-  @include flex-between;
-  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12px;
   position: sticky;
   top: 0;
   z-index: 100;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 
+  @media (min-width: 768px) {
+    height: 56px;
+    padding: 0 18px;
+  }
+
   &__left {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
   }
 
   &__hamburger {
-    display: none;
+    display: flex;
     cursor: pointer;
     width: 20px;
     height: 14px;
@@ -242,102 +203,137 @@ html, body {
       border-radius: 2px;
     }
 
-    @media (max-width: 768px) {
-      display: flex;
+    @media (min-width: 768px) {
+      display: none;
     }
   }
 
   &__brand {
     display: flex;
     align-items: center;
-    gap: 8px;
     text-decoration: none;
 
-    .brand-logo-img {
-      height: 34px;
-      object-fit: contain;
+    .brand-logo-svg {
+      height: 28px;
+      @media (min-width: 768px) {
+        height: 34px;
+      }
     }
   }
 
   &__actions {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 6px;
+
+    @media (min-width: 768px) {
+      gap: 10px;
+    }
   }
 
   .btn-login {
-    height: 34px;
-    padding: 0 18px;
+    height: 30px;
+    padding: 0 12px;
     background-color: $color-login-green;
     color: $color-white;
     font-weight: 700;
-    font-size: 12px;
+    font-size: 11px;
     border: none;
     border-radius: 50px;
     cursor: pointer;
-    @include flex-center;
-    gap: 6px;
-    @include transition-standard;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
     text-decoration: none;
+    transition: all 0.2s ease;
+
+    @media (min-width: 768px) {
+      height: 34px;
+      padding: 0 18px;
+      font-size: 12px;
+    }
 
     &:hover {
       background-color: $color-login-green-hover;
-      transform: translateY(-1px);
     }
   }
 
   .btn-signup {
-    height: 34px;
-    padding: 0 18px;
+    height: 30px;
+    padding: 0 12px;
     background-color: $color-signup-red;
     color: $color-white;
     font-weight: 700;
-    font-size: 12px;
+    font-size: 11px;
     border: none;
     border-radius: 50px;
     cursor: pointer;
-    @include flex-center;
-    gap: 6px;
-    @include transition-standard;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
     text-decoration: none;
+    transition: all 0.2s ease;
+
+    @media (min-width: 768px) {
+      height: 34px;
+      padding: 0 18px;
+      font-size: 12px;
+    }
 
     &:hover {
       background-color: $color-signup-red-hover;
-      transform: translateY(-1px);
     }
   }
 }
 
 // --------------------------------------------------------------------------
-// 7. MAIN CONTAINER LAYOUT
+// 5. MAIN WRAPPER & MOBILE SIDEBAR DRAWER
 // --------------------------------------------------------------------------
 .main-wrapper {
   display: flex;
   width: 100%;
-  min-height: calc(100vh - 54px);
+  min-height: calc(100vh - 50px);
 }
 
-// --------------------------------------------------------------------------
-// 8. SIDEBAR MENU
-// --------------------------------------------------------------------------
+/* Mobile Sidebar Backdrop Overlay */
+.sidebar-overlay {
+  position: fixed;
+  top: 50px;
+  left: 0;
+  width: 100%;
+  height: calc(100vh - 50px);
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 98;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+
+  &.active {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
 .sidebar {
-  width: 200px;
+  width: 180px;
   background-color: $color-sidebar-bg;
   border-right: 1px solid $color-sidebar-border;
   flex-shrink: 0;
 
-  @media (max-width: 768px) {
-    display: none;
+  @media (max-width: 767px) {
+    position: fixed;
+    top: 50px;
+    left: -220px;
+    width: 220px;
+    height: calc(100vh - 50px);
+    z-index: 99;
+    transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 4px 0 12px rgba(0, 0, 0, 0.15);
 
     &.mobile-open {
-      display: block;
-      position: fixed;
-      top: 54px;
       left: 0;
-      width: 240px;
-      height: calc(100vh - 54px);
-      z-index: 99;
-      box-shadow: 4px 0 10px rgba(0, 0, 0, 0.2);
     }
   }
 
@@ -357,7 +353,7 @@ html, body {
     font-weight: 700;
     font-size: 12px;
     border-bottom: 1px solid $color-sidebar-border;
-    @include transition-standard;
+    transition: all 0.2s ease;
 
     svg, img {
       width: 18px;
@@ -385,7 +381,7 @@ html, body {
 }
 
 // --------------------------------------------------------------------------
-// 9. CONTENT AREA
+// 6. CONTENT AREA
 // --------------------------------------------------------------------------
 .content-area {
   flex-grow: 1;
@@ -394,10 +390,11 @@ html, body {
   flex-direction: column;
   gap: 4px;
   overflow-x: hidden;
+  width: 100%;
 }
 
 // --------------------------------------------------------------------------
-// 10. TOP MATCHES SLIDER / TICKER
+// 7. TOP TICKER / MATCHES SLIDER
 // --------------------------------------------------------------------------
 .ticker-section {
   width: 100%;
@@ -406,6 +403,7 @@ html, body {
   padding: 2px 0;
   display: flex;
   gap: 4px;
+  touch-action: pan-x;
 
   &__container {
     display: flex;
@@ -416,23 +414,27 @@ html, body {
   &__card {
     background-color: $color-ticker-card-bg;
     color: $color-ticker-text;
-    padding: 6px 10px;
+    padding: 5px 8px;
     border-radius: 4px;
     display: flex;
     align-items: center;
-    gap: 8px;
-    min-width: 220px;
+    gap: 6px;
+    min-width: 185px;
     cursor: pointer;
-    @include transition-standard;
+    transition: all 0.2s ease;
+
+    @media (min-width: 768px) {
+      padding: 6px 10px;
+      min-width: 220px;
+    }
 
     &:hover {
       filter: brightness(1.08);
-      transform: translateY(-1px);
     }
 
     .card-icon {
-      width: 18px;
-      height: 18px;
+      width: 16px;
+      height: 16px;
       flex-shrink: 0;
     }
 
@@ -444,20 +446,24 @@ html, body {
     }
 
     .card-title {
-      font-size: 11px;
+      font-size: 10.5px;
       font-weight: 700;
       white-space: nowrap;
       text-align: center;
       margin-bottom: 2px;
       animation: liveBlink 2s ease-in-out infinite;
+
+      @media (min-width: 768px) {
+        font-size: 11px;
+      }
     }
 
     .card-badge {
       background-color: $color-ticker-date-bg;
-      font-size: 9.5px;
+      font-size: 9px;
       font-weight: 700;
-      padding: 1px 6px;
-      border-radius: 4px;
+      padding: 1px 5px;
+      border-radius: 3px;
       white-space: nowrap;
       display: inline-flex;
       align-items: center;
@@ -466,32 +472,42 @@ html, body {
 }
 
 // --------------------------------------------------------------------------
-// 11. CATEGORY NAVIGATION TABS
+// 8. CATEGORY TABS
 // --------------------------------------------------------------------------
 .tabs-bar {
   display: flex;
-  height: 38px;
+  height: 34px;
   border: 1px solid $color-nav-border;
   background-color: $color-white;
   overflow-x: auto;
   white-space: nowrap;
   border-radius: 2px;
+  touch-action: pan-x;
+
+  @media (min-width: 768px) {
+    height: 38px;
+  }
 
   &__tab {
     display: flex;
     align-items: center;
-    gap: 6px;
-    padding: 0 12px;
+    gap: 5px;
+    padding: 0 9px;
     height: 100%;
     background-color: $color-tab-bg;
     color: $color-tab-text;
     font-weight: 800;
-    font-size: 12px;
+    font-size: 11px;
     text-transform: uppercase;
     border-right: 1px solid #cbd5e1;
     cursor: pointer;
-    @include transition-standard;
+    transition: all 0.2s ease;
     flex-shrink: 0;
+
+    @media (min-width: 768px) {
+      padding: 0 12px;
+      font-size: 12px;
+    }
 
     &:hover {
       background-color: $color-tab-hover;
@@ -507,37 +523,40 @@ html, body {
     }
 
     .tab-icon {
-      width: 18px;
-      height: 18px;
+      width: 16px;
+      height: 16px;
       object-fit: contain;
     }
   }
 }
 
 // --------------------------------------------------------------------------
-// 12. PROMOTIONAL BANNERS
+// 9. ACTION BANNERS
 // --------------------------------------------------------------------------
 .banners-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 4px;
 
-  @media (max-width: 640px) {
-    grid-template-columns: 1fr;
-  }
-
   &__banner {
-    height: 42px;
-    @include flex-center;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: $color-white;
     font-weight: 900;
-    font-size: 15px;
+    font-size: 13px;
     letter-spacing: 0.5px;
     text-transform: uppercase;
     border-radius: 2px;
     cursor: pointer;
     text-decoration: none;
-    @include transition-standard;
+    transition: all 0.2s ease;
+
+    @media (min-width: 768px) {
+      height: 42px;
+      font-size: 15px;
+    }
 
     &--casino {
       background-color: $color-casino-banner;
@@ -556,7 +575,7 @@ html, body {
 }
 
 // --------------------------------------------------------------------------
-// 13. SPORTS ODDS TABLE SECTION
+// 10. SPORTS TABLES & ODDS (PERFECT MOBILE TABLE RESPONSIVENESS)
 // --------------------------------------------------------------------------
 .sports-table {
   background-color: $color-white;
@@ -568,68 +587,85 @@ html, body {
   &__header {
     background-color: $color-table-header-bg;
     color: $color-table-header-text;
-    height: 38px;
+    height: 36px;
     display: flex;
     align-items: center;
-    padding: 0 10px;
+    padding: 0 6px;
+
+    @media (min-width: 768px) {
+      height: 38px;
+      padding: 0 10px;
+    }
 
     .header-title-box {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
       font-weight: 800;
-      font-size: 13px;
+      font-size: 11.5px;
       text-transform: uppercase;
       flex-grow: 1;
 
+      @media (min-width: 768px) {
+        font-size: 13px;
+        gap: 8px;
+      }
+
       .title-icon {
-        width: 18px;
-        height: 18px;
+        width: 16px;
+        height: 16px;
       }
     }
 
     .header-pills {
       display: flex;
-      gap: 4px;
-      margin-left: 10px;
+      gap: 3px;
+      margin-left: 4px;
 
       .pill {
         border: 1px solid $color-pill-border;
         background-color: $color-pill-bg;
         color: $color-white;
-        font-size: 10px;
+        font-size: 9px;
         font-weight: 700;
-        padding: 2px 8px;
+        padding: 1px 6px;
         border-radius: 50px;
         cursor: pointer;
-        @include transition-standard;
         display: inline-flex;
         align-items: center;
+        transition: all 0.2s ease;
+
+        @media (min-width: 768px) {
+          font-size: 10px;
+          padding: 2px 8px;
+        }
 
         &:hover, &.active {
           background-color: rgba(255, 255, 255, 0.35);
-        }
-
-        &.active .green-dot {
-          animation: greenDotPulse 0.9s infinite ease-in-out;
         }
       }
     }
 
     .odds-columns-header {
       display: flex;
-      width: 420px;
+      width: 240px;
       flex-shrink: 0;
 
-      @media (max-width: 900px) {
+      @media (min-width: 640px) {
         width: 320px;
+      }
+      @media (min-width: 900px) {
+        width: 420px;
       }
 
       .col-title {
         flex: 1;
         text-align: center;
         font-weight: 800;
-        font-size: 12px;
+        font-size: 11px;
+        @media (min-width: 768px) {
+          font-size: 12px;
+        }
       }
     }
   }
@@ -638,9 +674,14 @@ html, body {
     display: flex;
     align-items: center;
     border-bottom: 1px solid #e2e8f0;
-    min-height: 44px;
-    padding: 4px 10px;
-    @include transition-standard;
+    min-height: 42px;
+    padding: 4px 6px;
+    transition: all 0.2s ease;
+
+    @media (min-width: 768px) {
+      min-height: 44px;
+      padding: 4px 10px;
+    }
 
     &:hover {
       background-color: #f8fafc;
@@ -650,50 +691,56 @@ html, body {
       flex-grow: 1;
       display: flex;
       flex-direction: column;
-      gap: 2px;
-      padding-right: 10px;
+      gap: 1px;
+      padding-right: 6px;
       min-width: 0;
 
       .date-time {
         color: $color-date-red;
-        font-size: 10px;
+        font-size: 9.5px;
         font-weight: 700;
+        @media (min-width: 768px) {
+          font-size: 10px;
+        }
       }
 
       .match-name-container {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: 8px;
+        gap: 4px;
       }
 
       .match-name {
-        font-size: 12px;
+        font-size: 11px;
         font-weight: 700;
         color: #1e293b;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+
+        @media (min-width: 768px) {
+          font-size: 12px;
+        }
       }
 
       .badges-group {
         display: flex;
         align-items: center;
-        gap: 3px;
+        gap: 2px;
         flex-shrink: 0;
 
         .tv-icon {
-          width: 14px;
-          height: 14px;
+          font-size: 11px;
           color: #475569;
         }
 
         .tag-badge {
           background-color: $color-badge-dark;
           color: $color-white;
-          font-size: 8.5px;
+          font-size: 8px;
           font-weight: 800;
-          padding: 1px 4px;
+          padding: 1px 3px;
           border-radius: 2px;
         }
       }
@@ -701,42 +748,52 @@ html, body {
 
     .odds-boxes-container {
       display: flex;
-      width: 420px;
+      width: 240px;
       flex-shrink: 0;
       gap: 2px;
 
-      @media (max-width: 900px) {
+      @media (min-width: 640px) {
         width: 320px;
+      }
+      @media (min-width: 900px) {
+        width: 420px;
       }
 
       .odds-group {
         display: flex;
         flex: 1;
-        gap: 2px;
+        gap: 1.5px;
       }
 
       .odds-box {
         flex: 1;
-        height: 34px;
-        @include flex-center;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         font-weight: 800;
-        font-size: 12px;
+        font-size: 10.5px;
         color: #0f172a;
         border-radius: 2px;
         cursor: pointer;
-        @include transition-standard;
         user-select: none;
+        transition: all 0.15s ease;
+
+        @media (min-width: 768px) {
+          height: 34px;
+          font-size: 12px;
+        }
 
         &--back {
           background-color: $color-odd-back-blue;
-          &:hover {
+          &:active, &:hover {
             background-color: $color-odd-back-blue-hover;
           }
         }
 
         &--lay {
           background-color: $color-odd-lay-pink;
-          &:hover {
+          &:active, &:hover {
             background-color: $color-odd-lay-pink-hover;
           }
         }
@@ -750,7 +807,7 @@ html, body {
 }
 
 // --------------------------------------------------------------------------
-// 14. LOGIN MODAL OVERLAY (SCREEN 3)
+// 11. LOGIN MODAL OVERLAY (MOBILE RESPONSIVE)
 // --------------------------------------------------------------------------
 .modal-overlay {
   position: fixed;
@@ -764,10 +821,14 @@ html, body {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  padding-top: 70px;
+  padding-top: 50px;
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.25s ease, visibility 0.25s ease;
+
+  @media (min-width: 768px) {
+    padding-top: 70px;
+  }
 
   &.open {
     opacity: 1;
@@ -777,14 +838,18 @@ html, body {
   .modal-box {
     background-color: $color-modal-bg;
     border: 1px solid $color-modal-border;
-    width: 90%;
-    max-width: 360px;
+    width: 88%;
+    max-width: 350px;
     border-radius: 12px;
-    padding: 24px;
+    padding: 20px;
     position: relative;
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
     transform: translateY(-10px);
     transition: transform 0.25s ease;
+
+    @media (min-width: 768px) {
+      padding: 24px;
+    }
 
     .open & {
       transform: translateY(0);
@@ -792,23 +857,21 @@ html, body {
 
     .modal-close-btn {
       position: absolute;
-      top: 14px;
-      right: 16px;
+      top: 12px;
+      right: 14px;
       color: $color-white;
       font-size: 20px;
       cursor: pointer;
       line-height: 1;
       opacity: 0.8;
-      @include transition-standard;
 
       &:hover {
         opacity: 1;
-        transform: scale(1.1);
       }
     }
 
     .form-group {
-      margin-bottom: 14px;
+      margin-bottom: 12px;
 
       label {
         display: block;
@@ -816,7 +879,7 @@ html, body {
         font-weight: 700;
         font-size: 11px;
         letter-spacing: 0.5px;
-        margin-bottom: 6px;
+        margin-bottom: 4px;
         text-transform: uppercase;
       }
 
@@ -831,7 +894,6 @@ html, body {
         font-size: 13px;
         font-weight: 600;
         outline: none;
-        @include transition-standard;
 
         &::placeholder {
           color: #8da4c4;
@@ -839,7 +901,6 @@ html, body {
 
         &:focus {
           border-color: #60a5fa;
-          box-shadow: 0 0 0 2px rgba(96, 165, 250, 0.2);
         }
       }
     }
@@ -850,8 +911,7 @@ html, body {
       font-size: 12px;
       text-decoration: none;
       margin-top: 4px;
-      margin-bottom: 18px;
-      @include transition-standard;
+      margin-bottom: 16px;
 
       &:hover {
         color: $color-white;
@@ -870,7 +930,6 @@ html, body {
       border-radius: 6px;
       cursor: pointer;
       margin-bottom: 10px;
-      @include transition-standard;
 
       &:hover {
         background-color: $color-login-green-hover;
@@ -887,7 +946,6 @@ html, body {
       border: 1px solid #4a93c7;
       border-radius: 6px;
       cursor: pointer;
-      @include transition-standard;
 
       &:hover {
         background-color: $color-demo-btn-hover;

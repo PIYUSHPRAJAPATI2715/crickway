@@ -1,6 +1,6 @@
 /* ==========================================================================
-   CRICWAY CLONE - COMPILED CSS STYLESHEET
-   100% Pixel-Perfect Recreation of crickway.online
+   CRICWAY CLONE - COMPILED MOBILE RESPONSIVE CSS
+   100% Pixel-Perfect Desktop & Mobile View
    ========================================================================== */
 
 * {
@@ -22,8 +22,8 @@ html, body {
 
 /* Custom Scrollbars */
 ::-webkit-scrollbar {
-  height: 4px;
-  width: 5px;
+  height: 3px;
+  width: 4px;
 }
 
 ::-webkit-scrollbar-track {
@@ -35,10 +35,6 @@ html, body {
   border-radius: 4px;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: #64748b;
-}
-
 .hide-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -48,9 +44,7 @@ html, body {
   display: none;
 }
 
-/* --------------------------------------------------------------------------
-   ANIMATIONS FOR BLINKING LIVE & GREEN DOT
-   -------------------------------------------------------------------------- */
+/* Blinking Elements */
 @keyframes liveBlink {
   0%, 100% {
     opacity: 1;
@@ -82,11 +76,11 @@ html, body {
 
 .green-dot {
   display: inline-block;
-  width: 7px;
-  height: 7px;
+  width: 6px;
+  height: 6px;
   background-color: #00ff66;
   border-radius: 50%;
-  margin-right: 4px;
+  margin-right: 3px;
   vertical-align: middle;
   animation: greenDotPulse 1.2s infinite ease-in-out;
 }
@@ -97,23 +91,19 @@ html, body {
   justify-content: center;
   background-color: #00b050;
   color: #ffffff;
-  font-size: 8.5px;
+  font-size: 8px;
   font-weight: 800;
-  padding: 2px 5px;
+  padding: 1px 4px;
   border-radius: 2px;
   line-height: 1;
   animation: liveBlink 1.2s ease-in-out infinite;
-}
-
-.live-badge .green-dot {
-  margin-right: 3px;
 }
 
 .live-badge::after {
   content: '';
   display: block;
   width: 100%;
-  height: 2px;
+  height: 1.5px;
   background-color: #ffffff;
   margin-top: 1px;
 }
@@ -122,36 +112,43 @@ html, body {
    HEADER
    -------------------------------------------------------------------------- */
 .header {
-  height: 54px;
+  height: 50px;
   background-color: #0b1426;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 16px;
+  padding: 0 12px;
   position: sticky;
   top: 0;
   z-index: 100;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
 
+@media (min-width: 768px) {
+  .header {
+    height: 56px;
+    padding: 0 18px;
+  }
+}
+
 .header__left {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 }
 
 .header__hamburger {
-  display: none;
+  display: flex;
   cursor: pointer;
-  width: 22px;
+  width: 20px;
   height: 14px;
   flex-direction: column;
   justify-content: space-between;
 }
 
-@media (max-width: 768px) {
+@media (min-width: 768px) {
   .header__hamburger {
-    display: flex;
+    display: none;
   }
 }
 
@@ -166,73 +163,116 @@ html, body {
 .header__brand {
   display: flex;
   align-items: center;
-  gap: 8px;
   text-decoration: none;
 }
 
 .header__brand .brand-logo-svg {
-  height: 32px;
+  height: 28px;
+}
+
+@media (min-width: 768px) {
+  .header__brand .brand-logo-svg {
+    height: 34px;
+  }
 }
 
 .header__actions {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 6px;
+}
+
+@media (min-width: 768px) {
+  .header__actions {
+    gap: 10px;
+  }
 }
 
 .btn-login {
-  height: 34px;
-  padding: 0 18px;
+  height: 30px;
+  padding: 0 12px;
   background-color: #009e38;
   color: #ffffff;
   font-weight: 700;
-  font-size: 12px;
+  font-size: 11px;
   border: none;
   border-radius: 50px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
-  transition: all 0.2s ease-in-out;
+  gap: 4px;
   text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+@media (min-width: 768px) {
+  .btn-login {
+    height: 34px;
+    padding: 0 18px;
+    font-size: 12px;
+  }
 }
 
 .btn-login:hover {
   background-color: #008730;
-  transform: translateY(-1px);
 }
 
 .btn-signup {
-  height: 34px;
-  padding: 0 18px;
+  height: 30px;
+  padding: 0 12px;
   background-color: #e50914;
   color: #ffffff;
   font-weight: 700;
-  font-size: 12px;
+  font-size: 11px;
   border: none;
   border-radius: 50px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
-  transition: all 0.2s ease-in-out;
+  gap: 4px;
   text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+@media (min-width: 768px) {
+  .btn-signup {
+    height: 34px;
+    padding: 0 18px;
+    font-size: 12px;
+  }
 }
 
 .btn-signup:hover {
   background-color: #c40812;
-  transform: translateY(-1px);
 }
 
 /* --------------------------------------------------------------------------
-   LAYOUT & SIDEBAR
+   MAIN LAYOUT & MOBILE SIDEBAR DRAWER
    -------------------------------------------------------------------------- */
 .main-wrapper {
   display: flex;
   width: 100%;
-  min-height: calc(100vh - 54px);
+  min-height: calc(100vh - 50px);
+}
+
+.sidebar-overlay {
+  position: fixed;
+  top: 50px;
+  left: 0;
+  width: 100%;
+  height: calc(100vh - 50px);
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 98;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.sidebar-overlay.active {
+  opacity: 1;
+  visibility: visible;
 }
 
 .sidebar {
@@ -242,19 +282,20 @@ html, body {
   flex-shrink: 0;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .sidebar {
-    display: none;
-  }
-  .sidebar.mobile-open {
-    display: block;
     position: fixed;
-    top: 54px;
-    left: 0;
+    top: 50px;
+    left: -220px;
     width: 220px;
-    height: calc(100vh - 54px);
+    height: calc(100vh - 50px);
     z-index: 99;
-    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.2);
+    transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 4px 0 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .sidebar.mobile-open {
+    left: 0;
   }
 }
 
@@ -274,7 +315,7 @@ html, body {
   font-weight: 700;
   font-size: 12px;
   border-bottom: 1px solid #e2e8f0;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease;
 }
 
 .sidebar__item svg, .sidebar__item img {
@@ -310,10 +351,11 @@ html, body {
   flex-direction: column;
   gap: 4px;
   overflow-x: hidden;
+  width: 100%;
 }
 
 /* --------------------------------------------------------------------------
-   TOP MATCHES TICKER / SLIDER
+   TOP TICKER SLIDER
    -------------------------------------------------------------------------- */
 .ticker-section {
   width: 100%;
@@ -322,6 +364,7 @@ html, body {
   padding: 2px 0;
   display: flex;
   gap: 4px;
+  touch-action: pan-x;
 }
 
 .ticker-section__container {
@@ -333,24 +376,30 @@ html, body {
 .ticker-section__card {
   background-color: #1d81c4;
   color: #ffffff;
-  padding: 6px 10px;
+  padding: 5px 8px;
   border-radius: 4px;
   display: flex;
   align-items: center;
-  gap: 8px;
-  min-width: 220px;
+  gap: 6px;
+  min-width: 185px;
   cursor: pointer;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease;
+}
+
+@media (min-width: 768px) {
+  .ticker-section__card {
+    padding: 6px 10px;
+    min-width: 220px;
+  }
 }
 
 .ticker-section__card:hover {
   filter: brightness(1.08);
-  transform: translateY(-1px);
 }
 
 .ticker-section__card .card-icon {
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
   flex-shrink: 0;
 }
 
@@ -362,7 +411,7 @@ html, body {
 }
 
 .ticker-section__card .card-title {
-  font-size: 11px;
+  font-size: 10.5px;
   font-weight: 700;
   white-space: nowrap;
   text-align: center;
@@ -370,12 +419,18 @@ html, body {
   animation: liveBlink 2s ease-in-out infinite;
 }
 
+@media (min-width: 768px) {
+  .ticker-section__card .card-title {
+    font-size: 11px;
+  }
+}
+
 .ticker-section__card .card-badge {
   background-color: #0d5e3a;
-  font-size: 9.5px;
+  font-size: 9px;
   font-weight: 700;
-  padding: 1px 6px;
-  border-radius: 4px;
+  padding: 1px 5px;
+  border-radius: 3px;
   white-space: nowrap;
   display: inline-flex;
   align-items: center;
@@ -386,29 +441,43 @@ html, body {
    -------------------------------------------------------------------------- */
 .tabs-bar {
   display: flex;
-  height: 38px;
+  height: 34px;
   border: 1px solid #1d81c4;
   background-color: #ffffff;
   overflow-x: auto;
   white-space: nowrap;
   border-radius: 2px;
+  touch-action: pan-x;
+}
+
+@media (min-width: 768px) {
+  .tabs-bar {
+    height: 38px;
+  }
 }
 
 .tabs-bar__tab {
   display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 0 12px;
+  gap: 5px;
+  padding: 0 9px;
   height: 100%;
   background-color: #ffffff;
   color: #0f172a;
   font-weight: 800;
-  font-size: 12px;
+  font-size: 11px;
   text-transform: uppercase;
   border-right: 1px solid #cbd5e1;
   cursor: pointer;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease;
   flex-shrink: 0;
+}
+
+@media (min-width: 768px) {
+  .tabs-bar__tab {
+    padding: 0 12px;
+    font-size: 12px;
+  }
 }
 
 .tabs-bar__tab:hover {
@@ -425,13 +494,13 @@ html, body {
 }
 
 .tabs-bar__tab .tab-icon {
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
   object-fit: contain;
 }
 
 /* --------------------------------------------------------------------------
-   BANNERS
+   ACTION BANNERS
    -------------------------------------------------------------------------- */
 .banners-grid {
   display: grid;
@@ -439,26 +508,27 @@ html, body {
   gap: 4px;
 }
 
-@media (max-width: 640px) {
-  .banners-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
 .banners-grid__banner {
-  height: 42px;
+  height: 38px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #ffffff;
   font-weight: 900;
-  font-size: 15px;
+  font-size: 13px;
   letter-spacing: 0.5px;
   text-transform: uppercase;
   border-radius: 2px;
   cursor: pointer;
   text-decoration: none;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease;
+}
+
+@media (min-width: 768px) {
+  .banners-grid__banner {
+    height: 42px;
+    font-size: 15px;
+  }
 }
 
 .banners-grid__banner--casino {
@@ -491,45 +561,66 @@ html, body {
 .sports-table__header {
   background-color: #197bbd;
   color: #ffffff;
-  height: 38px;
+  height: 36px;
   display: flex;
   align-items: center;
-  padding: 0 10px;
+  padding: 0 6px;
+}
+
+@media (min-width: 768px) {
+  .sports-table__header {
+    height: 38px;
+    padding: 0 10px;
+  }
 }
 
 .sports-table__header .header-title-box {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   font-weight: 800;
-  font-size: 13px;
+  font-size: 11.5px;
   text-transform: uppercase;
   flex-grow: 1;
 }
 
+@media (min-width: 768px) {
+  .sports-table__header .header-title-box {
+    font-size: 13px;
+    gap: 8px;
+  }
+}
+
 .sports-table__header .header-title-box .title-icon {
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
 }
 
 .sports-table__header .header-pills {
   display: flex;
-  gap: 4px;
-  margin-left: 10px;
+  gap: 3px;
+  margin-left: 4px;
 }
 
 .sports-table__header .header-pills .pill {
   border: 1px solid rgba(255, 255, 255, 0.4);
   background-color: rgba(255, 255, 255, 0.15);
   color: #ffffff;
-  font-size: 10px;
+  font-size: 9px;
   font-weight: 700;
-  padding: 2px 8px;
+  padding: 1px 6px;
   border-radius: 50px;
   cursor: pointer;
-  transition: all 0.2s ease-in-out;
   display: inline-flex;
   align-items: center;
+  transition: all 0.2s ease;
+}
+
+@media (min-width: 768px) {
+  .sports-table__header .header-pills .pill {
+    font-size: 10px;
+    padding: 2px 8px;
+  }
 }
 
 .sports-table__header .header-pills .pill:hover,
@@ -537,19 +628,21 @@ html, body {
   background-color: rgba(255, 255, 255, 0.35);
 }
 
-.sports-table__header .header-pills .pill.active .green-dot {
-  animation: greenDotPulse 0.9s infinite ease-in-out;
-}
-
 .sports-table__header .odds-columns-header {
   display: flex;
-  width: 420px;
+  width: 240px;
   flex-shrink: 0;
 }
 
-@media (max-width: 900px) {
+@media (min-width: 640px) {
   .sports-table__header .odds-columns-header {
     width: 320px;
+  }
+}
+
+@media (min-width: 900px) {
+  .sports-table__header .odds-columns-header {
+    width: 420px;
   }
 }
 
@@ -557,16 +650,29 @@ html, body {
   flex: 1;
   text-align: center;
   font-weight: 800;
-  font-size: 12px;
+  font-size: 11px;
+}
+
+@media (min-width: 768px) {
+  .sports-table__header .odds-columns-header .col-title {
+    font-size: 12px;
+  }
 }
 
 .sports-table__row {
   display: flex;
   align-items: center;
   border-bottom: 1px solid #e2e8f0;
-  min-height: 44px;
-  padding: 4px 10px;
-  transition: all 0.2s ease-in-out;
+  min-height: 42px;
+  padding: 4px 6px;
+  transition: all 0.2s ease;
+}
+
+@media (min-width: 768px) {
+  .sports-table__row {
+    min-height: 44px;
+    padding: 4px 10px;
+  }
 }
 
 .sports-table__row:hover {
@@ -577,26 +683,32 @@ html, body {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  gap: 2px;
-  padding-right: 10px;
+  gap: 1px;
+  padding-right: 6px;
   min-width: 0;
 }
 
 .sports-table__row .match-info .date-time {
   color: #d9381e;
-  font-size: 10px;
+  font-size: 9.5px;
   font-weight: 700;
+}
+
+@media (min-width: 768px) {
+  .sports-table__row .match-info .date-time {
+    font-size: 10px;
+  }
 }
 
 .sports-table__row .match-info .match-name-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 8px;
+  gap: 4px;
 }
 
 .sports-table__row .match-info .match-name {
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 700;
   color: #1e293b;
   white-space: nowrap;
@@ -604,66 +716,85 @@ html, body {
   text-overflow: ellipsis;
 }
 
+@media (min-width: 768px) {
+  .sports-table__row .match-info .match-name {
+    font-size: 12px;
+  }
+}
+
 .sports-table__row .match-info .badges-group {
   display: flex;
   align-items: center;
-  gap: 3px;
+  gap: 2px;
   flex-shrink: 0;
 }
 
 .sports-table__row .match-info .badges-group .tv-icon {
-  width: 14px;
-  height: 14px;
+  font-size: 11px;
   color: #475569;
 }
 
 .sports-table__row .match-info .badges-group .tag-badge {
   background-color: #202b3c;
   color: #ffffff;
-  font-size: 8.5px;
+  font-size: 8px;
   font-weight: 800;
-  padding: 1px 4px;
+  padding: 1px 3px;
   border-radius: 2px;
 }
 
 .sports-table__row .odds-boxes-container {
   display: flex;
-  width: 420px;
+  width: 240px;
   flex-shrink: 0;
   gap: 2px;
 }
 
-@media (max-width: 900px) {
+@media (min-width: 640px) {
   .sports-table__row .odds-boxes-container {
     width: 320px;
+  }
+}
+
+@media (min-width: 900px) {
+  .sports-table__row .odds-boxes-container {
+    width: 420px;
   }
 }
 
 .sports-table__row .odds-boxes-container .odds-group {
   display: flex;
   flex: 1;
-  gap: 2px;
+  gap: 1.5px;
 }
 
 .sports-table__row .odds-boxes-container .odds-box {
   flex: 1;
-  height: 34px;
+  height: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 800;
-  font-size: 12px;
+  font-size: 10.5px;
   color: #0f172a;
   border-radius: 2px;
   cursor: pointer;
-  transition: all 0.2s ease-in-out;
   user-select: none;
+  transition: all 0.15s ease;
+}
+
+@media (min-width: 768px) {
+  .sports-table__row .odds-boxes-container .odds-box {
+    height: 34px;
+    font-size: 12px;
+  }
 }
 
 .sports-table__row .odds-boxes-container .odds-box--back {
   background-color: #72c2ff;
 }
 
+.sports-table__row .odds-boxes-container .odds-box--back:active,
 .sports-table__row .odds-boxes-container .odds-box--back:hover {
   background-color: #52b3ff;
 }
@@ -672,16 +803,17 @@ html, body {
   background-color: #ffb6c1;
 }
 
+.sports-table__row .odds-boxes-container .odds-box--lay:active,
 .sports-table__row .odds-boxes-container .odds-box--lay:hover {
   background-color: #ffa1b0;
 }
 
 .sports-table__row .odds-boxes-container .odds-box.disabled {
-  color: #475569;
+  color: #64748b;
 }
 
 /* --------------------------------------------------------------------------
-   LOGIN MODAL OVERLAY (SCREEN 3)
+   LOGIN MODAL OVERLAY
    -------------------------------------------------------------------------- */
 .modal-overlay {
   position: fixed;
@@ -689,16 +821,22 @@ html, body {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(15, 23, 42, 0.75);
+  background-color: rgba(15, 23, 42, 0.8);
   backdrop-filter: blur(2px);
   z-index: 9999;
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  padding-top: 70px;
+  padding-top: 50px;
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+@media (min-width: 768px) {
+  .modal-overlay {
+    padding-top: 70px;
+  }
 }
 
 .modal-overlay.open {
@@ -709,14 +847,20 @@ html, body {
 .modal-overlay .modal-box {
   background-color: #1a3352;
   border: 1px solid #3b5982;
-  width: 90%;
-  max-width: 360px;
+  width: 88%;
+  max-width: 350px;
   border-radius: 12px;
-  padding: 24px;
+  padding: 20px;
   position: relative;
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
   transform: translateY(-10px);
   transition: transform 0.25s ease;
+}
+
+@media (min-width: 768px) {
+  .modal-overlay .modal-box {
+    padding: 24px;
+  }
 }
 
 .modal-overlay.open .modal-box {
@@ -725,23 +869,21 @@ html, body {
 
 .modal-overlay .modal-box .modal-close-btn {
   position: absolute;
-  top: 14px;
-  right: 16px;
+  top: 12px;
+  right: 14px;
   color: #ffffff;
   font-size: 20px;
   cursor: pointer;
   line-height: 1;
   opacity: 0.8;
-  transition: all 0.2s ease-in-out;
 }
 
 .modal-overlay .modal-box .modal-close-btn:hover {
   opacity: 1;
-  transform: scale(1.1);
 }
 
 .modal-overlay .modal-box .form-group {
-  margin-bottom: 14px;
+  margin-bottom: 12px;
 }
 
 .modal-overlay .modal-box .form-group label {
@@ -750,7 +892,7 @@ html, body {
   font-weight: 700;
   font-size: 11px;
   letter-spacing: 0.5px;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
   text-transform: uppercase;
 }
 
@@ -765,7 +907,6 @@ html, body {
   font-size: 13px;
   font-weight: 600;
   outline: none;
-  transition: all 0.2s ease-in-out;
 }
 
 .modal-overlay .modal-box .form-group input::placeholder {
@@ -774,7 +915,6 @@ html, body {
 
 .modal-overlay .modal-box .form-group input:focus {
   border-color: #60a5fa;
-  box-shadow: 0 0 0 2px rgba(96, 165, 250, 0.2);
 }
 
 .modal-overlay .modal-box .forgot-link {
@@ -783,8 +923,7 @@ html, body {
   font-size: 12px;
   text-decoration: none;
   margin-top: 4px;
-  margin-bottom: 18px;
-  transition: all 0.2s ease-in-out;
+  margin-bottom: 16px;
 }
 
 .modal-overlay .modal-box .forgot-link:hover {
@@ -803,7 +942,6 @@ html, body {
   border-radius: 6px;
   cursor: pointer;
   margin-bottom: 10px;
-  transition: all 0.2s ease-in-out;
 }
 
 .modal-overlay .modal-box .modal-submit-btn:hover {
@@ -820,7 +958,6 @@ html, body {
   border: 1px solid #4a93c7;
   border-radius: 6px;
   cursor: pointer;
-  transition: all 0.2s ease-in-out;
 }
 
 .modal-overlay .modal-box .modal-demo-btn:hover {
